@@ -43,6 +43,12 @@ The automated script will:
 3. **Generate** an optimized config tailored to your system constraints.
 4. **Advise** you on the best model weights for your specific setup.
 
+### 🚀 Running SqueezeOS After Install
+Once the installation script completes, you can launch SqueezeOS anytime using:
+```bash
+~/.squeezeos/run-squeezeos.sh
+```
+
 ---
 
 ## 🧠 How It Works (VRAM Tiers)
