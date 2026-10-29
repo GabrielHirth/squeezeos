@@ -3,7 +3,7 @@
 > **Run 35B+ LLMs on budget & legacy GPUs (like the GTX 1650 Super) with aggressive memory offloading, custom quantization, and extreme llama.cpp tuning.**
 
 [![GitHub stars](https://img.shields.io/github/stars/gabrielhirth/squeezeos?style=flat-square&color=emerald)](https://github.com/gabrielhirth/squeezeos/stargazers)
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy%2520Me%2520A%2520Coffee-F70000?style=flat-square&logo=buy-me-a-coffee&logoColor=white)](https://www.buymeacoffee.com/gabrielhirth)
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-F70000?style=flat-square&logo=buy-me-a-coffee&logoColor=white)](https://www.buymeacoffee.com/gabrielhirth)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
 
 ---
