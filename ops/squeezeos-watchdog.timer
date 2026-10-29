@@ -1,0 +1,11 @@
+[Unit]
+Description=Run SqueezeOS Watchdog every 5 minutes
+Requires=squeezeos-watchdog.service
+
+[Timer]
+Unit=squeezeos-watchdog.service
+OnBootSec=1min
+OnUnitActiveSec=5min
+
+[Install]
+WantedBy=timers.target
