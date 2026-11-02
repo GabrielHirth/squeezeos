@@ -226,8 +226,8 @@ echo "=================================================="
 echo ""
 
 # --- 9. Anonymous Telemetry Opt-In (For hardware market insights) ---
-echo "Would you like to share anonymous hardware stats (GPU: $GPU_NAME, VRAM: ${VRAM_MB}MB) to help improve SqueezeOS optimizations? [y/N]"
-read -r -t 10 opt_in || opt_in="n"
+echo -n "Would you like to share anonymous hardware stats (GPU: $GPU_NAME, VRAM: ${VRAM_MB}MB) to help improve SqueezeOS optimizations? [y/N]: "
+read -r opt_in
 if [[ "$opt_in" =~ ^[Yy]$ ]]; then
     echo "Thank you! Sending anonymous metrics..."
     # Replace with your actual webhook/collector endpoint (e.g., n8n, Formspree, or custom worker)
