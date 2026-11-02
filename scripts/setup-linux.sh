@@ -191,7 +191,57 @@ echo "  SqueezeOS Setup Complete!"
 echo "  To start: $RUN_SCRIPT"
 echo "=========================================="
 
-# --- 8. Automated llama-bench Profiler ---
+# --- 8. Cloud Upsell (RunPod Affiliate) ---
+# Replace this with your actual RunPod affiliate/ref link
+RUNPOD_AFFILIATE_URL="https://runpod.io/console/deploy?ref=YOUR_RUNPOD_REF_CODE"
+VAST_AFFILIATE_URL="https://vast.ai/console/create/?ref=YOUR_VAST_REF_CODE"
+
+echo ""
+echo "=================================================="
+echo "           SQUEEZEOS CLOUD ALTERNATIVE            "
+echo "=================================================="
+
+if [ "$VRAM_MB" -lt 6144 ]; then
+    echo "[!] VRAM bottleneck detected (${VRAM_MB}MB)"
+    echo "    Running 35B models on this card will be tight even with SqueezeOS."
+    echo ""
+    echo "    Want 35B at 25-40 tokens/s with zero VRAM headaches?"
+    echo "    Spin up a cheap GPU in the cloud and run SqueezeOS there in 1 click:"
+    echo ""
+    echo "    -> RunPod (pre-configured ready): $RUNPOD_AFFILIATE_URL"
+    echo "    -> Vast.ai (cheapest by the hour): $VAST_AFFILIATE_URL"
+    echo ""
+    echo "    Tip: You can shut it down the second you finish. Often <$0.20/hour."
+else
+    echo "[i] Your rig should handle SqueezeOS fine."
+    echo "    If you ever want to test bigger models or run 24/7 without heating your room:"
+    echo ""
+    echo "    -> RunPod: $RUNPOD_AFFILIATE_URL"
+    echo "    -> Vast.ai: $VAST_AFFILIATE_URL"
+    echo ""
+    echo "    Using these links helps keep SqueezeOS free & open-source."
+fi
+
+echo "=================================================="
+echo ""
+
+# --- 9. Anonymous Telemetry Opt-In (For hardware market insights) ---
+echo "Would you like to share anonymous hardware stats (GPU: $GPU_NAME, VRAM: ${VRAM_MB}MB) to help improve SqueezeOS optimizations? [y/N]"
+read -r -t 10 opt_in || opt_in="n"
+if [[ "$opt_in" =~ ^[Yy]$ ]]; then
+    echo "Thank you! Sending anonymous metrics..."
+    # Replace with your actual webhook/collector endpoint (e.g., n8n, Formspree, or custom worker)
+    TELEMETRY_ENDPOINT="https://hook.us2.make.com/nppc8273oxmwnlnkd3co31pzys171dpr"
+    curl -s -X POST -H "Content-Type: application/json" \
+        -d "{\"gpu\": \"$GPU_NAME\", \"vram_mb\": $VRAM_MB, \"ram_gb\": $TOTAL_MEM_GB, \"threads\": $CPU_THREADS}" \
+        "$TELEMETRY_ENDPOINT" &>/dev/null || true
+    echo "✅ Done."
+else
+    echo "Skipped telemetry."
+fi
+echo ""
+
+# --- 10. Automated llama-bench Profiler ---
 run_llama_bench() {
     local llama_dir="$1"
     local ini_file="$2"
